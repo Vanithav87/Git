@@ -11,28 +11,25 @@ class Solution {
         return null;
     }
 }
+
+
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummyHead = new ListNode(0);
         ListNode tail = dummyHead;
         int carry = 0;
-
         while (l1 != null || l2 != null || carry != 0) {
             int digit1 = (l1 != null) ? l1.val : 0;
             int digit2 = (l2 != null) ? l2.val : 0;
-
             int sum = digit1 + digit2 + carry;
             int digit = sum % 10;
             carry = sum / 10;
-
             ListNode newNode = new ListNode(digit);
             tail.next = newNode;
             tail = tail.next;
-
             l1 = (l1 != null) ? l1.next : null;
             l2 = (l2 != null) ? l2.next : null;
         }
-
         ListNode result = dummyHead.next;
         dummyHead.next = null;
         return result;
@@ -44,8 +41,7 @@ class Solution {
         int maxLength = 0;
         Set<Character> charSet = new HashSet<>();
         int left = 0;
-        
-        for (int right = 0; right < n; right++) {
+       for (int right = 0; right < n; right++) {
             if (!charSet.contains(s.charAt(right))) {
                 charSet.add(s.charAt(right));
                 maxLength = Math.max(maxLength, right - left + 1);
@@ -57,8 +53,7 @@ class Solution {
                 charSet.add(s.charAt(right));
             }
         }
-        
-        return maxLength;
+       return maxLength;
     }
 }
 class Solution {
@@ -69,7 +64,6 @@ class Solution {
         if(s.length() < 2) {
             return s;
         }
-        
         for(int i = 0; i<input.length; i++) {
             expandPalindrome(input, i, i);
             expandPalindrome(input, i, i+1);
@@ -77,7 +71,7 @@ class Solution {
         return s.substring(lo, lo+maxLen);
     }
     
-    public void expandPalindrome(char[] s, int j, int k) {
+ public void expandPalindrome(char[] s, int j, int k) {
         while(j >= 0 && k < s.length && s[j] == s[k]) {
             j--;
             k++;
@@ -114,19 +108,18 @@ public class Solution {
         romanMap.put('C', 100);
         romanMap.put('D', 500);
         romanMap.put('M', 1000);
-
-        int total = 0;
+int total = 0;
         for (int i = 0; i < s.length(); i++) {
             int currentVal = romanMap.get(s.charAt(i));
 
-            if (i < s.length() - 1 && currentVal < romanMap.get(s.charAt(i + 1))) {
+ if (i < s.length() - 1 && currentVal < romanMap.get(s.charAt(i + 1))) {
                 total -= currentVal;
             } else {
                 total += currentVal;
             }
         }
 
-        return total;
+ return total;
     }
 }
 public class Solution {
@@ -144,7 +137,7 @@ public class Solution {
            }
        }
        
-       return prefix;
+   return prefix;
    }
 
    public static void main(String[] args) {
@@ -163,7 +156,7 @@ public class Solution {
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (c == '(' || c == '{' || c == '[') {
-                stack.push(c);
+ stack.push(c);
             } 
             else {
                 if (stack.isEmpty()) {
@@ -184,7 +177,7 @@ public class Solution {
         return stack.isEmpty();
     }
 
-    public static void main(String[] args) {
+ public static void main(String[] args) {
         Solution solution = new Solution();
         String s1 = "()";
         System.out.println(solution.isValid(s1));  
@@ -220,18 +213,18 @@ class ListNode {
         s = s.substring(1, s.length() - 1); // Remove the '[' and ']'
         if (s.isEmpty()) return null; // If the string is empty, return null
 
-        String[] values = s.split(",");
+    String[] values = s.split(",");
         ListNode dummy = new ListNode(0); // Dummy node to simplify logic
         ListNode current = dummy;
 
-        // Iterate over the string values and create the linked list
+    // Iterate over the string values and create the linked list
         for (String value : values) {
             ListNode newNode = new ListNode(Integer.parseInt(value.trim()));
             current.next = newNode;
             current = current.next;
         }
 
-        return dummy.next; // Return the head of the linked list
+     return dummy.next; // Return the head of the linked list
     }
 
     // Helper function to print the list (for testing)
@@ -251,7 +244,7 @@ public class Solution {
         ListNode dummy = new ListNode(-1);
         ListNode current = dummy;
 
-        // Iterate through both lists
+   // Iterate through both lists
         while (list1 != null && list2 != null) {
             // Compare the values of the two lists and append the smaller one
             if (list1.val <= list2.val) {
@@ -264,21 +257,21 @@ public class Solution {
             current = current.next;  // Move the current pointer to the next node
         }
 
-        // If one of the lists is not empty, append the remaining nodes
+   // If one of the lists is not empty, append the remaining nodes
         if (list1 != null) {
             current.next = list1;
         } else if (list2 != null) {
             current.next = list2;
         }
 
-        // Return the merged list, which starts at dummy.next
+   // Return the merged list, which starts at dummy.next
         return dummy.next;
     }
 
-    public static void main(String[] args) {
+ public static void main(String[] args) {
         Solution solution = new Solution();
         
-        // Example 1: list1 = [1, 2, 4], list2 = [1, 3, 4]
+  // Example 1: list1 = [1, 2, 4], list2 = [1, 3, 4]
         String list1Str = "[1, 2, 4]";
         String list2Str = "[1, 3, 4]";
         ListNode list1 = ListNode.deserialize(list1Str);
@@ -286,7 +279,7 @@ public class Solution {
         ListNode mergedList = solution.mergeTwoLists(list1, list2);
         ListNode.printList(mergedList);  // Output: [1, 1, 2, 3, 4, 4]
 
-        // Example 2: list1 = [], list2 = []
+   // Example 2: list1 = [], list2 = []
         String list3Str = "[]";
         String list4Str = "[]";
         ListNode list3 = ListNode.deserialize(list3Str);
@@ -294,7 +287,7 @@ public class Solution {
         ListNode mergedList2 = solution.mergeTwoLists(list3, list4);
         ListNode.printList(mergedList2);  // Output: []
 
-        // Example 3: list1 = [], list2 = [0]
+   // Example 3: list1 = [], list2 = [0]
         String list5Str = "[]";
         String list6Str = "[0]";
         ListNode list5 = ListNode.deserialize(list5Str);
@@ -309,10 +302,10 @@ public class Solution {
             return 0; // No elements to process
         }
 
-        // Pointer k will track the position to place the next unique element
+   // Pointer k will track the position to place the next unique element
         int k = 1;
 
-        // Iterate through the array starting from the second element
+   // Iterate through the array starting from the second element
         for (int i = 1; i < nums.length; i++) {
             // When a new unique element is found
             if (nums[i] != nums[i - 1]) {
@@ -321,14 +314,14 @@ public class Solution {
             }
         }
 
-        // Return the number of unique elements
+   // Return the number of unique elements
         return k;
     }
 
-    public static void main(String[] args) {
+ public static void main(String[] args) {
         Solution solution = new Solution();
         
-        // Example 1
+   // Example 1
         int[] nums1 = {1, 1, 2};
         int k1 = solution.removeDuplicates(nums1);
         System.out.println("Number of unique elements: " + k1); // Output: 2
@@ -338,7 +331,7 @@ public class Solution {
         }
         System.out.println();
         
-        // Example 2
+   // Example 2
         int[] nums2 = {0,0,1,1,1,2,2,3};
         int k2 = solution.removeDuplicates(nums2);
         System.out.println("Number of unique elements: " + k2); // Output: 4
@@ -356,24 +349,24 @@ public class Solution {
             return 0;
         }
         
-        Use indexOf to find the first occurrence of needle in haystack
+   Use indexOf to find the first occurrence of needle in haystack
         return haystack.indexOf(needle);
     }
 
-    public static void main(String[] args) {
+ public static void main(String[] args) {
         Solution solution = new Solution();
         
-        // Example 1
+   // Example 1
         String haystack1 = "sadbutsad";
         String needle1 = "sad";
         System.out.println("First occurrence index: " + solution.strStr(haystack1, needle1)); // Output: 0
         
-        // Example 2
+   // Example 2
         String haystack2 = "hello";
         String needle2 = "ll";
         System.out.println("First occurrence index: " + solution.strStr(haystack2, needle2)); // Output: 2
         
-        // Example 3
+   // Example 3
         String haystack3 = "aaaaa";
         String needle3 = "bba";
         System.out.println("First occurrence index: " + solution.strStr(haystack3, needle3)); // Output: -1
@@ -384,11 +377,11 @@ public class Solution {
         int low = 0;
         int high = nums.length - 1;
 
-        // Binary search loop
+   // Binary search loop
         while (low <= high) {
             int mid = low + (high - low) / 2;
 
-            // Check if target is at mid
+   // Check if target is at mid
             if (nums[mid] == target) {
                 return mid;
             }
@@ -402,29 +395,29 @@ public class Solution {
             }
         }
 
-        // If target is not found, low will be the position to insert
+   // If target is not found, low will be the position to insert
         return low;
     }
 
-    public static void main(String[] args) {
+ public static void main(String[] args) {
         Solution solution = new Solution();
         
-        // Example 1
+   // Example 1
         int[] nums1 = {1, 3, 5, 6};
         int target1 = 5;
         System.out.println("Insert position: " + solution.searchInsert(nums1, target1)); // Output: 2
         
-        // Example 2
+   // Example 2
         int[] nums2 = {1, 3, 5, 6};
         int target2 = 2;
         System.out.println("Insert position: " + solution.searchInsert(nums2, target2)); // Output: 1
         
-        // Example 3
+   // Example 3
         int[] nums3 = {1, 3, 5, 6};
         int target3 = 7;
         System.out.println("Insert position: " + solution.searchInsert(nums3, target3)); // Output: 4
         
-        // Example 4
+  // Example 4
         int[] nums4 = {1, 3, 5, 6};
         int target4 = 0;
         System.out.println("Insert position: " + solution.searchInsert(nums4, target4)); // Output: 0
@@ -453,7 +446,7 @@ public class Solution {
             result[i + 1] = digits[i];
         }
 
-        return result;
+   return result;
     }
 }
 public class Solution {
@@ -484,17 +477,17 @@ public class Solution {
             return 1;  // Only one way to reach the top if there's just one step
         }
         
-        int first = 1;  // dp[0], number of ways to stay at the ground level
+   int first = 1;  // dp[0], number of ways to stay at the ground level
         int second = 2; // dp[1], number of ways to reach the first step
         
-        for (int i = 3; i <= n; i++) {
+   for (int i = 3; i <= n; i++) {
             int current = first + second; // Current number of ways to reach the i-th step
             first = second;  // Move first to the previous second
             second = current; // Move second to the current value
         }
         
-        return second; // After the loop, second will store the number of ways to reach step n
-    }
+   return second; // After the loop, second will store the number of ways to reach step n
+   }
 }
 /**
  * Definition for singly-linked list.
@@ -513,10 +506,10 @@ public class Solution {
             return head;
         }
         
-        // Use a pointer to traverse the list
+     // Use a pointer to traverse the list
         ListNode current = head;
         
-        while (current != null && current.next != null) {
+    while (current != null && current.next != null) {
             // If the current node's value is the same as the next node's value, skip the next node
             if (current.val == current.next.val) {
                 current.next = current.next.next;
@@ -526,6 +519,6 @@ public class Solution {
             }
         }
         
-        return head;  // Return the modified head of the list
+      return head;  // Return the modified head of the list
     }
 }
